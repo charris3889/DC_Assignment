@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace UserDLL
 {
-    public class Class1
+    public class User
     {
+        private string name;
+
     }
 }
