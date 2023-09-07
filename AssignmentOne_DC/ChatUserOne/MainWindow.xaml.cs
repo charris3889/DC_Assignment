@@ -24,23 +24,5 @@ namespace ChatUserOne
         {
             InitializeComponent();
         }
-
-        public void LoginButton_Click()
-        {
-            //Check whether username exists on server
-            //Create user on server and change layout
-
-            string username = UsernameBox.Text;
-
-            if(!usernameExists(username) )
-            {
-                createUser(username);
-                //Change layout to chat room
-            }
-            else
-            {
-                ErrorBlock.Text = "Username already exists please try a different name";
-            }
-        }
     }
 }
