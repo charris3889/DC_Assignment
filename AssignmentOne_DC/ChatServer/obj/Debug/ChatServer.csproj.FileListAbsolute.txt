@@ -1,0 +1,12 @@
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatServer\bin\Debug\ChatServer.exe.config
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatServer\bin\Debug\ChatServer.exe
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatServer\bin\Debug\ChatServer.pdb
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatServer\obj\Debug\ChatServer.csproj.AssemblyReference.cache
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatServer\obj\Debug\ChatServer.csproj.CoreCompileInputs.cache
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatServer\obj\Debug\ChatServer.exe
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatServer\obj\Debug\ChatServer.pdb
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatServer\bin\Debug\UserDLL.dll
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatServer\bin\Debug\UserDLL.pdb
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatServer\obj\Debug\ChatServer.csproj.CopyComplete
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatServer\bin\Debug\ChatServerDLL.dll
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatServer\bin\Debug\ChatServerDLL.pdb

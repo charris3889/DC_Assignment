@@ -1,36 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace UserDLL
 {
+    [DataContract]
     public class User
     {
         private string name;
-        private List<string> currentChat;   
-        private Dictionary<string, List<string>> chatRooms; 
+        private Chatroom currentRoom;
 
 
         public User(string userName) 
         {
             name = userName;
-            currentChat = null;
-            chatRooms = new Dictionary<string, List<string>>();
+            currentRoom = null;
         }
 
 
-        public void setCurrentChat(List<string> currentChat)    //assign a current chat whenever a groupchat or person is clicked
+        public void setCurrentChat(Chatroom chatroom)    //assign a current chat whenever a groupchat or person is clicked
         {
-            this.currentChat = currentChat;
+            currentRoom = chatroom;
         }
-
-        public void addChatRoom(string chatName, List<String> roomName)     //whenever a chatroom is created
-        {
-            chatRooms.Add(chatName, roomName);
-        }
-
-
     }
 }
