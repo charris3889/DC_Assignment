@@ -23,6 +23,16 @@ namespace ChatUserOne
         public MainWindow()
         {
             InitializeComponent();
+
+            LoginPage loginWindow = new LoginPage();
+            if (loginWindow.ShowDialog() == true)
+            {
+                //chat interface
+            }
+            else
+            {
+                //Exit the application
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
