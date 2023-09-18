@@ -7,6 +7,25 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="130,0,0,0" SelectionChanged="ListView_SelectionChanged" Name="MessagesListView">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBox HorizontalAlignment="Left" Margin="130,401,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="626" Height="33" TextChanged="TextBox_TextChanged"/>
+        <Button Content="Send" HorizontalAlignment="Left" Margin="756,401,0,0" VerticalAlignment="Top" Width="44" Height="33" Click="Button_Click"/>
+        <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="Enter Username" VerticalAlignment="Top" Width="130" Height="22"/>
+        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="686,0,0,33" SelectionChanged="ListBox_SelectionChanged" Name="CurrentChatUsersList"/>
+        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,22,670,33" Name="ChatsListView">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
     </Grid>
 </Window>
