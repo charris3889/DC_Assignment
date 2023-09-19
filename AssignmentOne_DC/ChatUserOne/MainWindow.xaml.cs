@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UserDLL;
 using ChatServerDLL;
+//using UserControls.LoginControl;
 
 namespace ChatUserOne
 {
@@ -25,6 +26,7 @@ namespace ChatUserOne
     public partial class MainWindow : Window
     {
         private ServerInterface foob;
+        public string username;
         private User user;
         public MainWindow()
         {
@@ -36,22 +38,18 @@ namespace ChatUserOne
             foobFactory = new ChannelFactory<ServerInterface>(tcp, URL);
             foob = foobFactory.CreateChannel();
 
-            LoginPage loginWindow = new LoginPage(foob);
+            //LoginPage loginWindow = new LoginPage(foob);
+            loginControl.loginAttempt += checkLoginAttempt;
+            
         }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
             //foob.SendMessage(MessageBox.Text);
         }
 
-        public static void setUsername(string newUsername)
+        public void checkLoginAttempt(Object sender, EventArgs e)
         {
-            //username = newUsername;
+            //loginControl.UsernameBox.Text = "success";
         }
     }
         

@@ -38,3 +38,6 @@ C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\bin\Deb
 C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\bin\Debug\ChatServerDLL.pdb
 C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\bin\Debug\UserDLL.pdb
 C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\ChatUserOne.csproj.CopyComplete
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\LoginControl1.g.cs
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\LoginControl1.baml
