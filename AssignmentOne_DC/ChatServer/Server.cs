@@ -26,7 +26,6 @@ namespace ChatServer
                 db.AddChatroom(personalChat);
             }
             
-            
         }
 
         public void createUser(string username)

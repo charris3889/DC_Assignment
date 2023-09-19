@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UserDLL;
 using ChatServerDLL;
+//using UserControls.LoginControl;
 
 namespace ChatUserOne
 {
@@ -25,6 +26,7 @@ namespace ChatUserOne
     public partial class MainWindow : Window
     {
         private ServerInterface foob;
+        public string username;
         private User user;
         public MainWindow()
         {
@@ -36,23 +38,18 @@ namespace ChatUserOne
             string URL = "net.tcp://localhost:8100/Server";
             foobFactory = new ChannelFactory<ServerInterface>(tcp, URL);
             foob = foobFactory.CreateChannel();
+
+            loginControl.loginAttempt += checkLoginAttempt;
             
-            LoginPage loginWindow = new LoginPage(foob);
         }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
             foob.sendMessage(this.user, MessageArea.Text);
         }
 
-        public static void setUsername(string newUsername)
+        public void checkLoginAttempt(Object sender, EventArgs e)
         {
-            //username = newUsername;
+            //loginControl.UsernameBox.Text = "success";
         }
 
         private void ChatsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -70,7 +67,7 @@ namespace ChatUserOne
 
             if (selChatRoom != null)
             {
-                MessageBox.Show($"Now in Chatroom: {selChatRoom}");
+                MessageArea.Text = ($"Now in Chatroom: {selChatRoom}");
             }
 
 
