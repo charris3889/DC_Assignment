@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ServerDLL
-build_property.ProjectDir = C:\Users\totid\source\repos\DC_Assignment\AssignmentOne_DC\Server\
+build_property.ProjectDir = C:\Users\totid\Source\Repos\DC_Assignment\AssignmentOne_DC\Server\
