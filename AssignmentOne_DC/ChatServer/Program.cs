@@ -18,6 +18,9 @@ namespace ChatServer
             host.AddServiceEndpoint(typeof(ServerInterface), binding, "net.tcp://localhost:8100/Server");
             host.Open();
 
+            Console.WriteLine("ChatServer Initiated");
+            Console.WriteLine("System Online");
+            
             Console.ReadLine();
 
             host.Close();

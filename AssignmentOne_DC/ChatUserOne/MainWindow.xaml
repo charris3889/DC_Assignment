@@ -7,18 +7,18 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="130,0,0,0"  Name="MessagesListView">
+        <ListView  Margin="130,0,0,0"  Name="MessagesListView">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn/>
+                    <GridViewColumn Header="Chatroom Name" Width="120"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <TextBox Name="MessageBox" HorizontalAlignment="Left" Margin="130,401,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="626" Height="33" TextChanged="TextBox_TextChanged"/>
+        <TextBox Name="MessageArea" HorizontalAlignment="Left" Margin="130,401,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="626" Height="33" TextChanged="TextBox_TextChanged"/>
         <Button Name="SendButton" Content="Send" HorizontalAlignment="Left" Margin="756,401,0,0" VerticalAlignment="Top" Width="44" Height="33" Click="SendButton_Click"/>
         <TextBox Name="UsernameBox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Width="130" Height="22"/>
         <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="686,0,0,33" Name="CurrentChatUsersList" Width="112"/>
-        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,22,670,33" Name="ChatsListView">
+        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,22,670,33" Name="ChatsListView" SelectionChanged="ChatsListView_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>

@@ -10,6 +10,13 @@ namespace UserDLL
     [DataContract]
     public class Chatroom
     {
+        List<string> messages;
+        string chatName;
 
+        public Chatroom(string chatroomName) 
+        {
+            this.messages = new List<string>();
+            this.chatName = chatroomName;
+        }
     }
 }

@@ -29,13 +29,14 @@ namespace ChatUserOne
         public MainWindow()
         {
             InitializeComponent();
+
             ChannelFactory<ServerInterface> foobFactory;
             NetTcpBinding tcp = new NetTcpBinding();
             //Set the URL and create the connection!
             string URL = "net.tcp://localhost:8100/Server";
             foobFactory = new ChannelFactory<ServerInterface>(tcp, URL);
             foob = foobFactory.CreateChannel();
-
+            
             LoginPage loginWindow = new LoginPage(foob);
         }
 
@@ -52,6 +53,17 @@ namespace ChatUserOne
         public static void setUsername(string newUsername)
         {
             //username = newUsername;
+        }
+
+        private void ChatsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string selChatRoom = (string)ChatsListView.SelectedItem;
+            if (selChatRoom != null)
+            {
+                MessageBox.Show($"Now in Chatroom: {selChatRoom}");
+            }
+
+
         }
     }
         
