@@ -9,7 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatUserOne", "ChatUserOne\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserDLL", "UserDLL\UserDLL.csproj", "{317233F1-D5E1-47E5-B4A6-121692CFD138}"
 EndProject
+<<<<<<< HEAD
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerDLL", "Server\ServerDLL.csproj", "{FEFA26F8-D059-41C4-A390-4F23616729BA}"
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatServerDLL", "ChatServerDLL\ChatServerDLL.csproj", "{B28DC524-AA63-472A-9528-5B939FBE7473}"
+>>>>>>> a7823189b67b2010dab065baf80c21f157550ece
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +33,17 @@ Global
 		{317233F1-D5E1-47E5-B4A6-121692CFD138}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{317233F1-D5E1-47E5-B4A6-121692CFD138}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{317233F1-D5E1-47E5-B4A6-121692CFD138}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
 		{FEFA26F8-D059-41C4-A390-4F23616729BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FEFA26F8-D059-41C4-A390-4F23616729BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEFA26F8-D059-41C4-A390-4F23616729BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEFA26F8-D059-41C4-A390-4F23616729BA}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+		{B28DC524-AA63-472A-9528-5B939FBE7473}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B28DC524-AA63-472A-9528-5B939FBE7473}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B28DC524-AA63-472A-9528-5B939FBE7473}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B28DC524-AA63-472A-9528-5B939FBE7473}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> a7823189b67b2010dab065baf80c21f157550ece
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

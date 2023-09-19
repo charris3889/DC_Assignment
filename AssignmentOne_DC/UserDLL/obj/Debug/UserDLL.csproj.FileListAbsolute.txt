@@ -1,0 +1,12 @@
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\UserDLL\bin\Debug\UserDLL.dll
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\UserDLL\bin\Debug\UserDLL.pdb
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\UserDLL\obj\Debug\UserDLL.csproj.AssemblyReference.cache
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\UserDLL\obj\Debug\UserDLL.csproj.CoreCompileInputs.cache
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\UserDLL\obj\Debug\UserDLL.dll
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\UserDLL\obj\Debug\UserDLL.pdb
+C:\Users\totid\source\repos\DC_Assignment\AssignmentOne_DC\UserDLL\bin\Debug\UserDLL.dll
+C:\Users\totid\source\repos\DC_Assignment\AssignmentOne_DC\UserDLL\bin\Debug\UserDLL.pdb
+C:\Users\totid\source\repos\DC_Assignment\AssignmentOne_DC\UserDLL\obj\Debug\UserDLL.csproj.AssemblyReference.cache
+C:\Users\totid\source\repos\DC_Assignment\AssignmentOne_DC\UserDLL\obj\Debug\UserDLL.csproj.CoreCompileInputs.cache
+C:\Users\totid\source\repos\DC_Assignment\AssignmentOne_DC\UserDLL\obj\Debug\UserDLL.dll
+C:\Users\totid\source\repos\DC_Assignment\AssignmentOne_DC\UserDLL\obj\Debug\UserDLL.pdb

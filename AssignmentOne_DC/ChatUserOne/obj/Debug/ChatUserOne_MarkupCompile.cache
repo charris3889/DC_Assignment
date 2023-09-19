@@ -4,11 +4,16 @@
 winexe
 C#
 .cs
+<<<<<<< HEAD
 C:\Users\totid\Source\Repos\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\
+=======
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\
+>>>>>>> a7823189b67b2010dab065baf80c21f157550ece
 ChatUserOne
 none
 false
 DEBUG;TRACE
+<<<<<<< HEAD
 C:\Users\totid\Source\Repos\DC_Assignment\AssignmentOne_DC\ChatUserOne\App.xaml
 1219584333
 
@@ -17,4 +22,14 @@ C:\Users\totid\Source\Repos\DC_Assignment\AssignmentOne_DC\ChatUserOne\App.xaml
 MainWindow.xaml;
 
 True
+=======
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\App.xaml
+31988227133
+
+8206730822
+18-1518665412
+AddChatroomControl.xaml;LoginControl1.xaml;MainWindow.xaml;
+
+False
+>>>>>>> a7823189b67b2010dab065baf80c21f157550ece
 

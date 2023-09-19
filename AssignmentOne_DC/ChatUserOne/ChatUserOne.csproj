@@ -37,7 +37,13 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+<<<<<<< HEAD
     <Reference Include="System.ServiceModel" />
+=======
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+>>>>>>> a7823189b67b2010dab065baf80c21f157550ece
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -56,13 +62,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AddChatroomControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginControl1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="AddChatroomControl.xaml.cs">
+      <DependentUpon>AddChatroomControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Class1.cs" />
+    <Compile Include="LoginControl1.xaml.cs">
+      <DependentUpon>LoginControl1.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -96,7 +117,18 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <WCFMetadata Include="Connected Services\" />
+=======
+    <ProjectReference Include="..\ChatServerDLL\ChatServerDLL.csproj">
+      <Project>{b28dc524-aa63-472a-9528-5b939fbe7473}</Project>
+      <Name>ChatServerDLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserDLL\UserDLL.csproj">
+      <Project>{317233f1-d5e1-47e5-b4a6-121692cfd138}</Project>
+      <Name>UserDLL</Name>
+    </ProjectReference>
+>>>>>>> a7823189b67b2010dab065baf80c21f157550ece
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

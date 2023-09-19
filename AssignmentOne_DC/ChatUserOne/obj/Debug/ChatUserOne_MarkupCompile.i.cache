@@ -10,11 +10,19 @@ none
 false
 DEBUG;TRACE
 C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\App.xaml
+<<<<<<< HEAD
 1219584333
 
 6-502434485
 142063754234
 MainWindow.xaml;
+=======
+31988227133
+
+9-1875357796
+18-1518665412
+AddChatroomControl.xaml;LoginControl1.xaml;MainWindow.xaml;
+>>>>>>> a7823189b67b2010dab065baf80c21f157550ece
 
 True
 
