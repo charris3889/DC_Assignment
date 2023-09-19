@@ -49,3 +49,6 @@ C:\Users\totid\source\repos\DC_Assignment\AssignmentOne_DC\ChatUserOne\bin\Debug
 C:\Users\totid\source\repos\DC_Assignment\AssignmentOne_DC\ChatUserOne\bin\Debug\UserDLL.pdb
 C:\Users\totid\source\repos\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\ChatUserOne.csproj.CopyComplete
 >>>>>>> a6e5933faf628356afd69ec70599c8a6fd112584
+C:\Users\totid\source\repos\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\LoginControl1.g.cs
+C:\Users\totid\source\repos\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\totid\source\repos\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\LoginControl1.baml
