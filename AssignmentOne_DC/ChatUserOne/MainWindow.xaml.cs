@@ -31,16 +31,22 @@ namespace ChatUserOne
         public MainWindow()
         {
             InitializeComponent();
+
             ChannelFactory<ServerInterface> foobFactory;
             NetTcpBinding tcp = new NetTcpBinding();
             //Set the URL and create the connection!
             string URL = "net.tcp://localhost:8100/Server";
             foobFactory = new ChannelFactory<ServerInterface>(tcp, URL);
             foob = foobFactory.CreateChannel();
+<<<<<<< HEAD
 
             //LoginPage loginWindow = new LoginPage(foob);
             loginControl.loginAttempt += checkLoginAttempt;
             
+=======
+            
+            LoginPage loginWindow = new LoginPage(foob);
+>>>>>>> a6e5933faf628356afd69ec70599c8a6fd112584
         }
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
@@ -50,6 +56,17 @@ namespace ChatUserOne
         public void checkLoginAttempt(Object sender, EventArgs e)
         {
             //loginControl.UsernameBox.Text = "success";
+        }
+
+        private void ChatsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string selChatRoom = (string)ChatsListView.SelectedItem;
+            if (selChatRoom != null)
+            {
+                MessageBox.Show($"Now in Chatroom: {selChatRoom}");
+            }
+
+
         }
     }
         
