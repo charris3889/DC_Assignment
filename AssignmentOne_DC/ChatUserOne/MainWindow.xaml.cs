@@ -52,24 +52,20 @@ namespace ChatUserOne
             //loginControl.UsernameBox.Text = "success";
             if (!foob.hasUser(UsernameBox.Text))
             {
-                foob.createUser(UsernameBox.Text);
+                foob.createUser(loginControl.UsernameBox.Text);
                 loginControl.Visibility = Visibility.Hidden;
             }
             
         }
 
+        public void checkChatroomCreateAttempt(Object sender, EventArgs e)
+        {
+            //if(!foob.hasChatroom(addChatControl.ChatnameBox.Text))
+        }
+
         private void ChatsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string selChatRoom = (string)ChatsListView.SelectedItem;
-
-
-
-
-
-
-
-
-
 
             if (selChatRoom != null)
             {

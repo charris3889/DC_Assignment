@@ -28,5 +28,6 @@
                 </ListView.View>
             </ListView>
             <local:LoginControl1 x:Name="loginControl" VerticalAlignment="Center" Height="434" Width="799" />
+        <!--<local:AddChatroomControl x:Name="addChatControl" /> -->
     </Grid>
 </Window>
