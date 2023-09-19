@@ -12,11 +12,13 @@ namespace UserDLL
     {
         List<string> messages;
         string chatName;
+        List<User> users;
 
         public Chatroom(string chatroomName) 
         {
             this.messages = new List<string>();
             this.chatName = chatroomName;
+            this.users = new List<User>();
         }
     }
 }

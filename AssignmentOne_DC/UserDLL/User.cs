@@ -26,5 +26,9 @@ namespace UserDLL
         {
             currentRoom = chatroom;
         }
+
+        public string getName() { return name; }
+        public Chatroom getCurrentRoom() {  return currentRoom; }
+        public void setName(string inName) { this.name = inName; }
     }
 }

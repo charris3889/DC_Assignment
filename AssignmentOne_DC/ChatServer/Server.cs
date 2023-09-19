@@ -22,6 +22,8 @@ namespace ChatServer
 
         public void createUser(string username)
         {
+
+            Console.WriteLine($"[{DateTime.Now}] {username} has connected.");
             throw new NotImplementedException();
         }
 
@@ -47,6 +49,7 @@ namespace ChatServer
 
         public void sendMessage(User user, string message)
         {
+
             throw new NotImplementedException();
         }
     }
