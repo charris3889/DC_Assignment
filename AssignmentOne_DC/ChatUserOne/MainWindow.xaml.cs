@@ -49,7 +49,13 @@ namespace ChatUserOne
 
         public void checkLoginAttempt(Object sender, EventArgs e)
         {
-            loginControl.UsernameBox.Text = "success";
+            //loginControl.UsernameBox.Text = "success";
+            if (!foob.hasUser(UsernameBox.Text))
+            {
+                foob.createUser(UsernameBox.Text);
+                loginControl.Visibility = Visibility.Hidden;
+            }
+            
         }
 
         private void ChatsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)

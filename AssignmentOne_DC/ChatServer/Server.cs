@@ -59,8 +59,7 @@ namespace ChatServer
 
         public bool hasUser(string username)
         {
-            db.UserExists(username);
-            throw new NotImplementedException();
+            return db.UserExists(username);
         }
 
         public List<string> ReceiveMessage(Chatroom chatroom) //we might not need it depending on how well I implemented database
