@@ -47,7 +47,7 @@ namespace ChatUserOne
 
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
-            //foob.SendMessage(MessageBox.Text);
+            foob.sendMessage(this.user, MessageArea.Text);
         }
 
         public static void setUsername(string newUsername)
@@ -58,6 +58,16 @@ namespace ChatUserOne
         private void ChatsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string selChatRoom = (string)ChatsListView.SelectedItem;
+
+
+
+
+
+
+
+
+
+
             if (selChatRoom != null)
             {
                 MessageBox.Show($"Now in Chatroom: {selChatRoom}");

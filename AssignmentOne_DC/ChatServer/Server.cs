@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UserDLL;
-using ChatServerDLL;
+using System.ServiceModel;
 
 namespace ChatServer
 {
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, UseSynchronizationContext = false, IncludeExceptionDetailInFaults = true)]
     public class Server : ServerInterface
     {
         private Database db = new Database();
