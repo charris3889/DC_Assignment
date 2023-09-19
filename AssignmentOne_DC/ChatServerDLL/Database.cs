@@ -6,9 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using UserDLL;
 
+
 namespace ChatServerDLL
 {
-    internal class Database
+    public class Database
     {
         List<Chatroom> chatrooms;
         HashSet<User> users;
@@ -18,34 +19,48 @@ namespace ChatServerDLL
             users = new HashSet<User>();
         }
 
-        public void AddChatroom(Chatroom chatroom)
+        public void AddChatroom(string chatroom) //chatroom creation
         {
-            chatrooms.Add(chatroom);
+            Chatroom newChat = new Chatroom(chatroom);
+            chatrooms.Add(newChat);
         }
 
-        public void RemoveChatroom(Chatroom toRemChatroom)
+        public void RemoveChatroom(Chatroom toRemChatroom) //chatroom deletion
         {
             foreach(Chatroom c in chatrooms)
             {
                 if(toRemChatroom == c)
                 {
+
                     chatrooms.Remove(c);
                 }
             }
         }
 
+        public void AssignChatroom(User user, string chatroom)
+        {
+            foreach (Chatroom c in chatrooms)
+            {
+                if (c.getChatName().Equals(chatroom))
+                {
+                    user.setCurrentChat(c);
+                    c.addUserToChat(user);
+                }
+            }
+        }
 
-        public void AddUser(string inUser) 
+
+        public void AddUser(string inUser)  //adding user to database
         {
             User newUser = new User(inUser);
             users.Add(newUser);
         }
 
-        public void RemoveUser(string outUser) 
+        public void RemoveUser(string outUser) //removing user from data base
         {
             foreach(User u in users)
             {
-                if(u.getName() == outUser)
+                if(u.getName().Equals(outUser))
                 {
                     users.Remove(u);
                 }
@@ -53,7 +68,30 @@ namespace ChatServerDLL
             
         }
 
-        public void SendUserMessage(User user, string msg)
+        public bool UserExists(string username) //username validation
+        {
+            foreach(User u in users)
+            {
+                if (u.getName().Equals(username))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool AlreadyCreated(string chatroomName) //personal chat creation validation
+        {
+            foreach (Chatroom c in chatrooms)
+            {
+                if (c.getChatName().Equals(chatroomName)){
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public void SendUserMessage(User user, string msg) //sending message to user
         {
             foreach(User u in users)
             {
@@ -61,13 +99,26 @@ namespace ChatServerDLL
                 {
                     foreach(Chatroom c in chatrooms)
                     {
-                        if(c == user.getCurrentRoom())
+                        if(c == user.getCurrentChat())
                         {
                             c.addMessage($"[{DateTime.Now}]: {user.getName()}" + msg);
                         }
                     }
                 }
             }
+        }
+
+        public List<User> retrieveChatUsers(Chatroom chat)
+        {
+            foreach(Chatroom c in chatrooms)
+            {
+                if (c.Equals(chat))
+                {
+                    return c.getUsers();
+                }
+            }
+
+            return null;
         }
 
     }

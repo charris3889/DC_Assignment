@@ -28,7 +28,8 @@ namespace UserDLL
         }
 
         public string getName() { return name; }
-        public Chatroom getCurrentRoom() {  return currentRoom; }
+        public Chatroom getCurrentChat() {  return currentRoom; }
+        
         public void setName(string inName) { this.name = inName; }
     }
 }
