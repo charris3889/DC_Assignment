@@ -40,11 +40,17 @@ namespace ChatUserOne
             foob = foobFactory.CreateChannel();
 
             loginControl.loginAttempt += checkLoginAttempt;
-            
+
+            addChatControl.Visibility = Visibility.Hidden;
+            addChatControl.creationAttempt += checkChatroomCreateAttempt;
         }
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
             foob.sendMessage(this.user, MessageArea.Text);
+            List<string> list = new List<string>();
+            list.Add(username);
+            list.Add("hi");
+            ChatsListView.ItemsSource = list;
         }
 
         public void checkLoginAttempt(Object sender, EventArgs e)
@@ -55,12 +61,13 @@ namespace ChatUserOne
                 foob.createUser(loginControl.UsernameBox.Text);
                 loginControl.Visibility = Visibility.Hidden;
             }
-            
         }
 
         public void checkChatroomCreateAttempt(Object sender, EventArgs e)
         {
-            //if(!foob.hasChatroom(addChatControl.ChatnameBox.Text))
+            //if(!foob.hasChatroom(addChatControl.ChatnameBox.Text)) {
+            foob.createChatroom(addChatControl.ChatnameBox.Text);
+            //}
         }
 
         private void ChatsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -71,8 +78,6 @@ namespace ChatUserOne
             {
                 MessageArea.Text = ($"Now in Chatroom: {selChatRoom}");
             }
-
-
         }
     }
         
