@@ -13,63 +13,44 @@ namespace ChatServer
     public class Server : ServerInterface
     {
         private Database db = new Database();
+        public bool hasUser(string username)
+        {
+            return db.HasUser(username);
+        }
+
+        public User createUser(string username)
+        {
+            return db.CreateUser(username);
+        }
+
         public void createChatroom(string chatname)
         {
-            db.AddChatroom(chatname);
+            db.CreateChatroom(chatname);
         }
 
         public void createPersonalRoom(User user1, User user2)
         {
-            string personalChat = user1.getName() + " " + user2.getName();
-            if (!db.AlreadyCreated(personalChat))
-            {
-                db.AddChatroom(personalChat);
-            }
-            
-        }
-
-        public void createUser(string username)
-        {
-            if (!hasUser(username))
-            {
-                db.AddUser(username);
-                Console.WriteLine($"[{DateTime.Now}] {username} has connected.");
-            }
-            else
-            {
-                Console.WriteLine($"[{DateTime.Now}] Username: {username} already in use.");
-            }
-
-            
-           
+            db.CreatePersonalRoom(user1, user2);
         }
 
         public void enterChatroom(User user, string chatname)
         {
-            db.AssignChatroom(user, chatname);
-
-            
+            db.EnterChatroom(user, chatname);
         }
 
-        public List<User> getChatroomMembers(Chatroom chatroom)
+        public void sendMessage(User user, string chatname, string message)
         {
-            return db.retrieveChatUsers(chatroom);
-            
+            db.SendMessage(user, chatname, message);
         }
 
-        public bool hasUser(string username)
+        public List<string> ReceiveMessage(string chatname)
         {
-            return db.UserExists(username);
+            return db.ReceiveMessage(chatname);
         }
 
-        public List<string> ReceiveMessage(Chatroom chatroom) //we might not need it depending on how well I implemented database
+        public List<string> forDisplayChatrooms()
         {
-            throw new NotImplementedException();
-        }
-
-        public void sendMessage(User user, string message)
-        {
-            db.SendUserMessage(user, message);
+            return db.ForDisplayChatrooms();
         }
     }
 }

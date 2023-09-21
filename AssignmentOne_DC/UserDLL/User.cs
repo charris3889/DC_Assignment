@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,25 +12,28 @@ namespace UserDLL
     [DataContract]
     public class User
     {
+        [DataMember]
         private string name;
-        private Chatroom currentRoom;
+        [DataMember]
+        private string currentChatroom;
 
-
-        public User(string userName) 
+        public User(string userName)
         {
             name = userName;
-            currentRoom = null;
+            currentChatroom = null;
         }
 
-
-        public void setCurrentChat(Chatroom chatroom)    //assign a current chat whenever a groupchat or person is clicked
+        [DataMember]
+        public string Name
         {
-            currentRoom = chatroom;
+            get { return name; }
+            set { name = value; }
         }
 
-        public string getName() { return name; }
-        public Chatroom getCurrentChat() {  return currentRoom; }
-        
-        public void setName(string inName) { this.name = inName; }
+        [DataMember]
+        public string CurrentChatroom { 
+            get { return currentChatroom; }
+            set { currentChatroom = value; }
+        }
     }
 }

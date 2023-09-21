@@ -26,41 +26,40 @@ namespace ChatUserOne
     public partial class MainWindow : Window
     {
         private ServerInterface foob;
-        public string username;
         private User user;
+
         public MainWindow()
         {
             InitializeComponent();
 
             ChannelFactory<ServerInterface> foobFactory;
             NetTcpBinding tcp = new NetTcpBinding();
-            //Set the URL and create the connection!
             string URL = "net.tcp://localhost:8100/Server";
             foobFactory = new ChannelFactory<ServerInterface>(tcp, URL);
             foob = foobFactory.CreateChannel();
 
             loginControl.loginAttempt += checkLoginAttempt;
-            
         }
+
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
-            foob.sendMessage(this.user, MessageArea.Text);
+            foob.sendMessage(user, user.CurrentChatroom, MessageArea.Text);
+            MessageArea.Text = "";
+            MessagesListView.ItemsSource = foob.ReceiveMessage(user.CurrentChatroom);
         }
 
         public void checkLoginAttempt(Object sender, EventArgs e)
         {
-            //loginControl.UsernameBox.Text = "success";
-            if (!foob.hasUser(UsernameBox.Text))
+            if (!foob.hasUser(loginControl.UsernameText))
             {
-                foob.createUser(loginControl.UsernameBox.Text);
-                loginControl.Visibility = Visibility.Hidden;
+                user = foob.createUser(loginControl.UsernameText);
+                if (user != null)
+                {
+                    UsernameBox.Text = user.Name;
+                    ChatsListView.ItemsSource = foob.forDisplayChatrooms();
+                    loginControl.Visibility = Visibility.Hidden;
+                }
             }
-            
-        }
-
-        public void checkChatroomCreateAttempt(Object sender, EventArgs e)
-        {
-            //if(!foob.hasChatroom(addChatControl.ChatnameBox.Text))
         }
 
         private void ChatsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -69,11 +68,11 @@ namespace ChatUserOne
 
             if (selChatRoom != null)
             {
-                MessageArea.Text = ($"Now in Chatroom: {selChatRoom}");
+                foob.enterChatroom(user, selChatRoom);
+                user.CurrentChatroom = selChatRoom; 
+                MessagesListView.ItemsSource = foob.ReceiveMessage(selChatRoom);
             }
-
-
         }
+
     }
-        
 }

@@ -13,20 +13,23 @@ namespace ChatServerDLL
     public interface ServerInterface
     {
         [OperationContract]
-        void sendMessage(User user, string message);
+        void sendMessage(User user, string chatname, string message);
         [OperationContract]
-        List<string> ReceiveMessage(Chatroom chatroom); //not sure what to make return type atm
+        List<string> ReceiveMessage(string chatroom); //not sure what to make return type atm
         [OperationContract]
-        Boolean hasUser(string username);
+        bool hasUser(string username);
         [OperationContract]
-        void createUser(string username);
+        List<string> forDisplayChatrooms();
+
+        [OperationContract]
+        User createUser(string username);
         [OperationContract]
         void createChatroom(string chatname);
         [OperationContract]
         void createPersonalRoom(User user1, User user2);
         [OperationContract]
         void enterChatroom(User user, string chatname);
-        [OperationContract]
-        List<User> getChatroomMembers(Chatroom chatroom);
+        //[OperationContract]
+        //List<User> getChatroomMembers(Chatroom chatroom);
     }
 }

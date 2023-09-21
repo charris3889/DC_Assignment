@@ -32,6 +32,7 @@ namespace ChatUserOne
 
         public void LoginButton_Click(object sender, RoutedEventArgs e)
         {
+            UsernameText = UsernameBox.Text;
             loginAttempt?.Invoke(this, EventArgs.Empty);
             //OnLoginButtonClick(EventArgs.Empty);
         }
@@ -42,7 +43,7 @@ namespace ChatUserOne
         public string UsernameText
         {
             get { return (string)GetValue(property); }
-            set { SetValue(property, UsernameBox.Text); }
+            set { SetValue(property, value); }
         }
     }
 }

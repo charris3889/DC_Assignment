@@ -11,115 +11,85 @@ namespace ChatServerDLL
 {
     public class Database
     {
-        List<Chatroom> chatrooms;
-        HashSet<User> users;
+        private List<User> users;
+        private Dictionary<string, List<string>> chatrooms;
 
-        public Database() {
-            chatrooms = new List<Chatroom>();
-            users = new HashSet<User>();
+        public Database() 
+        { 
+            users = new List<User>();
+            chatrooms = new Dictionary<string, List<string>>();
+            chatrooms["sample"] = new List<string>();
+        }
+        public bool HasUser(string username)
+        {
+            return users.Exists(u => u.Name == username);
         }
 
-        public void AddChatroom(string chatroom) //chatroom creation
+        public User CreateUser(string username)
         {
-            Chatroom newChat = new Chatroom(chatroom);
-            chatrooms.Add(newChat);
-        }
+            if (string.IsNullOrEmpty(username)) return null; //Handle invalid usernames.
 
-        public void RemoveChatroom(Chatroom toRemChatroom) //chatroom deletion
-        {
-            foreach(Chatroom c in chatrooms)
-            {
-                if(toRemChatroom == c)
-                {
-
-                    chatrooms.Remove(c);
-                }
-            }
-        }
-
-        public void AssignChatroom(User user, string chatroom)
-        {
-            foreach (Chatroom c in chatrooms)
-            {
-                if (c.getChatName().Equals(chatroom))
-                {
-                    user.setCurrentChat(c);
-                    c.addUserToChat(user);
-                }
-            }
-        }
-
-
-        public void AddUser(string inUser)  //adding user to database
-        {
-            User newUser = new User(inUser);
+            User newUser = new User(username);
             users.Add(newUser);
+            return newUser;
         }
 
-        public void RemoveUser(string outUser) //removing user from data base
+        public void CreateChatroom(string chatname)
         {
-            foreach(User u in users)
-            {
-                if(u.getName().Equals(outUser))
-                {
-                    users.Remove(u);
-                }
-            }
-            
-        }
+            if (string.IsNullOrEmpty(chatname)) return; //Handle invalid chat names.
 
-        public bool UserExists(string username) //username validation
-        {
-            foreach(User u in users)
+            if (!chatrooms.ContainsKey(chatname))
             {
-                if (u.getName().Equals(username))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-        public bool AlreadyCreated(string chatroomName) //personal chat creation validation
-        {
-            foreach (Chatroom c in chatrooms)
-            {
-                if (c.getChatName().Equals(chatroomName)){
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        public void SendUserMessage(User user, string msg) //sending message to user
-        {
-            foreach(User u in users)
-            {
-                if(u == user)
-                {
-                    foreach(Chatroom c in chatrooms)
-                    {
-                        if(c == user.getCurrentChat())
-                        {
-                            c.addMessage($"[{DateTime.Now}]: {user.getName()}" + msg);
-                        }
-                    }
-                }
+                chatrooms[chatname] = new List<string>();
             }
         }
 
-        public List<User> retrieveChatUsers(Chatroom chat)
+        public void CreatePersonalRoom(User user1, User user2)
         {
-            foreach(Chatroom c in chatrooms)
-            {
-                if (c.Equals(chat))
-                {
-                    return c.getUsers();
-                }
-            }
+            if (user1 == null || user2 == null) return; //Handle null users.
 
-            return null;
+            string personalRoomName = $"{user1.Name}_{user2.Name}";
+            if (!chatrooms.ContainsKey(personalRoomName))
+            {
+                chatrooms[personalRoomName] = new List<string>();
+            }
         }
 
+        public void EnterChatroom(User user, string chatname)
+        {
+            if (user == null || string.IsNullOrEmpty(chatname)) return; //Handle edge cases.
+
+            if (chatrooms.ContainsKey(chatname))
+            {
+                Console.WriteLine($"[{DateTime.Now}]{user.Name} has entered the chatroom.");
+            }
+        }
+
+        public void SendMessage(User user, string chatname, string message)
+        {
+            if (user == null || string.IsNullOrEmpty(chatname) || string.IsNullOrEmpty(message)) return; //Handle edge cases.
+
+            if (chatrooms.ContainsKey(chatname))
+            {
+                chatrooms[chatname].Add($"[{DateTime.Now}] --> {user.Name}: {message}");
+            }
+        }
+
+        public List<string> ReceiveMessage(string chatname)
+        {
+            if (string.IsNullOrEmpty(chatname)) return null; //Handle invalid chat names.
+
+            if (chatrooms.ContainsKey(chatname))
+            {
+                return chatrooms[chatname];
+            }
+            return null; //Or return an empty list.
+        }
+
+        public List<string> ForDisplayChatrooms()
+        {
+            return new List<string>(chatrooms.Keys);
+        }
     }
+
 }
