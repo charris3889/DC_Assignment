@@ -36,7 +36,7 @@ namespace UserDLL
         {
             foreach (User u in users) 
             {
-                if (u.getName().Equals(username))
+                if (u.Name.Equals(username))
                 {
                     users.Remove(u);
                 }
