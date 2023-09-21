@@ -78,6 +78,7 @@ namespace ChatUserOne
                 foob.enterChatroom(user, selChatRoom);
                 user.CurrentChatroom = selChatRoom; 
                 MessagesListView.ItemsSource = foob.ReceiveMessage(selChatRoom);
+                MyGridView.Columns[0].Header = "Chatroom: " + selChatRoom;
             }
         }
 
@@ -87,6 +88,21 @@ namespace ChatUserOne
             foob.createChatroom(addChatControl.ChatnameText);
             ChatsListView.ItemsSource = foob.forDisplayChatrooms();
             addChatControl.Visibility = Visibility.Hidden;
+        }
+
+        private void AddChatroom_Click(object sender, RoutedEventArgs e)
+        {
+            addChatControl.Visibility = Visibility.Visible;
+        }
+
+        private void AddImage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            loginControl.Visibility = Visibility.Visible;
         }
     }
 }

@@ -7,27 +7,35 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="13*"/>
+            <ColumnDefinition Width="387*"/>
+        </Grid.ColumnDefinitions>
 
-        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="130,0,0,0"  Name="MessagesListView">
+        <ListView Margin="104,0,0,0"  Name="MessagesListView" Grid.Column="1">
             <!--<ListView  Margin="130,0,0,0"  Name="MessagesListView"> -->
             <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Chatroom Name" Width="300"/>
+                <GridView x:Name="MyGridView">
+                    <GridViewColumn  Header="Chatroom Name" Width="300"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <TextBox Name="MessageArea" HorizontalAlignment="Left" Margin="130,401,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="626" Height="33"/>
-        <Button Name="SendButton" Content="Send" HorizontalAlignment="Left" Margin="756,401,0,0" VerticalAlignment="Top" Width="44" Height="33" Click="SendButton_Click"/>
-        <TextBox Name="UsernameBox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Width="130" Height="22"/>
-        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="686,0,0,33" Name="CurrentChatUsersList" Width="112"/>
-        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,22,670,33" Name="ChatsListView" SelectionChanged="ChatsListView_SelectionChanged">
+        <TextBox Name="MessageArea" HorizontalAlignment="Left" Margin="104,401,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="626" Height="33" Grid.Column="1"/>
+        <Button Name="SendButton" Content="Send" HorizontalAlignment="Left" Margin="730,401,0,0" VerticalAlignment="Top" Width="44" Height="33" Click="SendButton_Click" Grid.Column="1"/>
+        <TextBox Name="UsernameBox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Width="130" Height="22" Grid.ColumnSpan="2"/>
+        <ListBox Margin="661,0,1,33" Name="CurrentChatUsersList" Width="112" Grid.Column="1"/>
+        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,22,670,33" Name="ChatsListView" SelectionChanged="ChatsListView_SelectionChanged" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <local:LoginControl1 x:Name="loginControl" VerticalAlignment="Center" Height="434" Width="799" Margin="1,0,0,0" />
-        <local:AddChatroomControl x:Name="addChatControl" Visibility="Hidden"/>
+        <Button Content="Add chatroom" HorizontalAlignment="Left" Margin="683,370,0,0" VerticalAlignment="Top" Height="31" Width="96" Click="AddChatroom_Click" Grid.Column="1" />
+        <Button Grid.Column="1" Content="Add image" HorizontalAlignment="Left" Margin="696,339,0,0" VerticalAlignment="Top" Height="31" Width="78" Click="AddImage_Click"/>
+        <Button Content="Logout" Grid.Column="1" Margin="717,311,-3,96" Click="LogoutButton_Click"/>
+        <local:LoginControl1 x:Name="loginControl" VerticalAlignment="Top" Height="439" Width="799" Margin="0,-5,1,0" Grid.ColumnSpan="2" />
+        <local:AddChatroomControl x:Name="addChatControl" Visibility="Hidden" Grid.ColumnSpan="2"/>
+        
     </Grid>
 </Window>
