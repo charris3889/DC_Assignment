@@ -12,7 +12,7 @@
             <ColumnDefinition Width="387*"/>
         </Grid.ColumnDefinitions>
 
-        <ListView Margin="104,0,0,0"  Name="MessagesListView" Grid.Column="1">
+        <ListView Margin="103,0,1,0"  Name="MessagesListView" Grid.Column="1">
             <!--<ListView  Margin="130,0,0,0"  Name="MessagesListView"> -->
             <ListView.View>
                 <GridView x:Name="MyGridView">
@@ -22,8 +22,18 @@
         </ListView>
         <TextBox Name="MessageArea" HorizontalAlignment="Left" Margin="104,401,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="626" Height="33" Grid.Column="1"/>
         <Button Name="SendButton" Content="Send" HorizontalAlignment="Left" Margin="730,401,0,0" VerticalAlignment="Top" Width="44" Height="33" Click="SendButton_Click" Grid.Column="1"/>
+        <Button Name="UploadButton" Content="Upload"  Grid.Column="1" Margin="714,283,0,123" Click="UploadButton_Click">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
         <TextBox Name="UsernameBox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Width="130" Height="22" Grid.ColumnSpan="2"/>
-        <ListBox Margin="661,0,1,33" Name="CurrentChatUsersList" Width="112" Grid.Column="1"/>
+        <ListBox Margin="661,0,1,151" Name="CurrentChatUsersList" Width="112" Grid.Column="1"/>
         <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,22,670,33" Name="ChatsListView" SelectionChanged="ChatsListView_SelectionChanged" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
@@ -34,8 +44,8 @@
         <Button Content="Add chatroom" HorizontalAlignment="Left" Margin="683,370,0,0" VerticalAlignment="Top" Height="31" Width="96" Click="AddChatroom_Click" Grid.Column="1" />
         <Button Grid.Column="1" Content="Add image" HorizontalAlignment="Left" Margin="696,339,0,0" VerticalAlignment="Top" Height="31" Width="78" Click="AddImage_Click"/>
         <Button Content="Logout" Grid.Column="1" Margin="717,311,-3,96" Click="LogoutButton_Click"/>
-        <local:LoginControl1 x:Name="loginControl" VerticalAlignment="Top" Height="439" Width="799" Margin="0,-5,1,0" Grid.ColumnSpan="2" />
+        <local:LoginControl1 x:Name="loginControl" VerticalAlignment="Top" Height="439" Width="799" Margin="0,0,1,0" Grid.ColumnSpan="2" />
         <local:AddChatroomControl x:Name="addChatControl" Visibility="Hidden" Grid.ColumnSpan="2"/>
-        
+
     </Grid>
 </Window>

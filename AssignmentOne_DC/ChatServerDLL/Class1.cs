@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,8 +11,10 @@ namespace ChatServerDLL
         public class DatabaseSingleton
         {
             private static Database instance;
+            public List<string> textFiles = new List<string>();
+            public List<Bitmap> imageFiles = new List<Bitmap>();
 
-            public DatabaseSingleton()
+        public DatabaseSingleton()
             {
                 if (instance == null)
                 {
@@ -98,6 +101,16 @@ namespace ChatServerDLL
             {
                 return new List<string>(instance.chatrooms.Keys);
             }
-        }
+
+            public void addTextFiles(string files)
+            {
+                textFiles.Add(files);
+            }
+
+            public void addImageFiles(Bitmap files)
+            {
+                imageFiles.Add(files);
+            }
+    }
     }
 

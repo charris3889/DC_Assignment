@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -33,5 +34,13 @@ namespace ChatServerDLL
         bool HasChatroom(string chatroom);
         //[OperationContract]
         //List<User> getChatroomMembers(Chatroom chatroom);
+        [OperationContract]
+        void addTextFiles(string files);
+        [OperationContract]
+        void addImageFiles(Bitmap files);
+        [OperationContract]
+        List<string> getTextFiles();
+        [OperationContract]
+        List<Bitmap> getImageFiles();
     }
 }

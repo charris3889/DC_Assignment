@@ -16,6 +16,10 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UserDLL;
 using ChatServerDLL;
+using System.IO;
+using System.Windows.Forms;
+using System.Drawing;
+using MessageBox = System.Windows.Forms.MessageBox;
 //using UserControls.LoginControl;
 
 namespace ChatUserOne
@@ -50,6 +54,39 @@ namespace ChatUserOne
             MessagesListView.ItemsSource = foob.ReceiveMessage(user.CurrentChatroom);
 
         }
+
+
+        public void UploadButton_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+
+            bool? response = openFileDialog.ShowDialog();
+
+            if (response == true)
+            {
+                string filepath = openFileDialog.FileName;
+            
+
+                string fileExtension = System.IO.Path.GetExtension(filepath).ToLower();
+
+                if (fileExtension == ".txt")
+                {
+                    string fileContent = File.ReadAllText(filepath);
+                    foob.addTextFiles(fileContent);
+
+                    List<string> list = foob.getTextFiles();
+                    MessageBox.Show(list[0]); 
+                }
+                else if (IsImageFile(fileExtension))
+                {
+                    Bitmap bitmap = new Bitmap(filepath);
+                    foob.addImageFiles(bitmap);
+                }
+            }
+
+
+        }
+
 
         public void checkLoginAttempt(Object sender, EventArgs e)
         {
@@ -107,6 +144,14 @@ namespace ChatUserOne
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             loginControl.Visibility = Visibility.Visible;
+        }
+
+
+        private bool IsImageFile(string fileExtension)
+        {
+            List<string> supportedImageExtensions = new List<string> { ".jpg", ".jpeg", ".png", ".bmp", ".gif", ".tiff" };
+
+            return supportedImageExtensions.Contains(fileExtension);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
@@ -13,6 +14,7 @@ namespace ChatServerDLL
     {
         public List<User> users; //Made them public cos i cant be bothered making getters and setters
         public Dictionary<string, List<string>> chatrooms;
+     
 
         public Database() 
         { 
@@ -100,6 +102,9 @@ namespace ChatServerDLL
         {
             return new List<string>(chatrooms.Keys);
         }
+
+
+      
     }
 
 }
