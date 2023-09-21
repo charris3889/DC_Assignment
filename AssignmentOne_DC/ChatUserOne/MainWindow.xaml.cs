@@ -39,13 +39,27 @@ namespace ChatUserOne
             foob = foobFactory.CreateChannel();
 
             loginControl.loginAttempt += checkLoginAttempt;
+<<<<<<< HEAD
+=======
+
+            addChatControl.Visibility = Visibility.Hidden;
+            addChatControl.creationAttempt += checkChatroomCreateAttempt;
+>>>>>>> 584bd32e9769edbc4a8227c1734756c5c4815127
         }
 
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
+<<<<<<< HEAD
             foob.sendMessage(user, user.CurrentChatroom, MessageArea.Text);
             MessageArea.Text = "";
             MessagesListView.ItemsSource = foob.ReceiveMessage(user.CurrentChatroom);
+=======
+            foob.sendMessage(this.user, MessageArea.Text);
+            List<string> list = new List<string>();
+            list.Add(username);
+            list.Add("hi");
+            ChatsListView.ItemsSource = list;
+>>>>>>> 584bd32e9769edbc4a8227c1734756c5c4815127
         }
 
         public void checkLoginAttempt(Object sender, EventArgs e)
@@ -60,6 +74,16 @@ namespace ChatUserOne
                     loginControl.Visibility = Visibility.Hidden;
                 }
             }
+<<<<<<< HEAD
+=======
+        }
+
+        public void checkChatroomCreateAttempt(Object sender, EventArgs e)
+        {
+            //if(!foob.hasChatroom(addChatControl.ChatnameBox.Text)) {
+            foob.createChatroom(addChatControl.ChatnameBox.Text);
+            //}
+>>>>>>> 584bd32e9769edbc4a8227c1734756c5c4815127
         }
 
         private void ChatsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
