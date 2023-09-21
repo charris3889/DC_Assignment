@@ -29,6 +29,8 @@ namespace ChatServerDLL
         void createPersonalRoom(User user1, User user2);
         [OperationContract]
         void enterChatroom(User user, string chatname);
+        [OperationContract]
+        bool HasChatroom(string chatroom);
         //[OperationContract]
         //List<User> getChatroomMembers(Chatroom chatroom);
     }

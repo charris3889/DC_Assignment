@@ -1,28 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using UserDLL;
 
-
 namespace ChatServerDLL
 {
-    public class Database
+    public class DatabaseSingleton
     {
-        public List<User> users; //Made them public cos i cant be bothered making getters and setters
-        public Dictionary<string, List<string>> chatrooms;
+        private static Database instance;
 
-        public Database() 
-        { 
-            users = new List<User>();
-            chatrooms = new Dictionary<string, List<string>>();
-            chatrooms["sample"] = new List<string>();
+        public DatabaseSingleton()
+        {
+            if(instance == null)
+            {
+                instance = new Database();
+            }
         }
         public bool HasUser(string username)
         {
-            return users.Exists(u => u.Name == username);
+            return instance.users.Exists(u => u.Name == username);
         }
 
         public User CreateUser(string username)
@@ -30,13 +28,13 @@ namespace ChatServerDLL
             if (string.IsNullOrEmpty(username)) return null; //Handle invalid usernames.
 
             User newUser = new User(username);
-            users.Add(newUser);
+            instance.users.Add(newUser);
             return newUser;
         }
 
         public bool HasChatroom(string chatroom)
         {
-            if(chatrooms.ContainsKey(chatroom))
+            if (instance.chatrooms.ContainsKey(chatroom))
             {
                 return true;
             }
@@ -48,9 +46,9 @@ namespace ChatServerDLL
         {
             if (string.IsNullOrEmpty(chatname)) return; //Handle invalid chat names.
 
-            if (!chatrooms.ContainsKey(chatname))
+            if (!instance.chatrooms.ContainsKey(chatname))
             {
-                chatrooms[chatname] = new List<string>();
+                instance.chatrooms[chatname] = new List<string>();
             }
         }
 
@@ -59,9 +57,9 @@ namespace ChatServerDLL
             if (user1 == null || user2 == null) return; //Handle null users.
 
             string personalRoomName = $"{user1.Name}_{user2.Name}";
-            if (!chatrooms.ContainsKey(personalRoomName))
+            if (!instance.chatrooms.ContainsKey(personalRoomName))
             {
-                chatrooms[personalRoomName] = new List<string>();
+                instance.chatrooms[personalRoomName] = new List<string>();
             }
         }
 
@@ -69,7 +67,7 @@ namespace ChatServerDLL
         {
             if (user == null || string.IsNullOrEmpty(chatname)) return; //Handle edge cases.
 
-            if (chatrooms.ContainsKey(chatname))
+            if (instance.chatrooms.ContainsKey(chatname))
             {
                 Console.WriteLine($"[{DateTime.Now}]{user.Name} has entered the chatroom.");
             }
@@ -79,9 +77,9 @@ namespace ChatServerDLL
         {
             if (user == null || string.IsNullOrEmpty(chatname) || string.IsNullOrEmpty(message)) return; //Handle edge cases.
 
-            if (chatrooms.ContainsKey(chatname))
+            if (instance.chatrooms.ContainsKey(chatname))
             {
-                chatrooms[chatname].Add($"[{DateTime.Now}] --> {user.Name}: {message}");
+                instance.chatrooms[chatname].Add($"[{DateTime.Now}] --> {user.Name}: {message}");
             }
         }
 
@@ -89,17 +87,16 @@ namespace ChatServerDLL
         {
             if (string.IsNullOrEmpty(chatname)) return null; //Handle invalid chat names.
 
-            if (chatrooms.ContainsKey(chatname))
+            if (instance.chatrooms.ContainsKey(chatname))
             {
-                return chatrooms[chatname];
+                return instance.chatrooms[chatname];
             }
             return null; //Or return an empty list.
         }
 
         public List<string> ForDisplayChatrooms()
         {
-            return new List<string>(chatrooms.Keys);
+            return new List<string>(instance.chatrooms.Keys);
         }
     }
-
 }

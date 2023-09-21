@@ -12,7 +12,8 @@ namespace ChatServer
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, UseSynchronizationContext = false, IncludeExceptionDetailInFaults = true)]
     public class Server : ServerInterface
     {
-        private Database db = new Database();
+        private DatabaseSingleton db = new DatabaseSingleton();
+        //private Database db = new Database();
         public bool hasUser(string username)
         {
             return db.HasUser(username);
@@ -21,6 +22,11 @@ namespace ChatServer
         public User createUser(string username)
         {
             return db.CreateUser(username);
+        }
+
+        public bool HasChatroom(string chatroom)
+        {
+            return db.HasChatroom(chatroom);
         }
 
         public void createChatroom(string chatname)

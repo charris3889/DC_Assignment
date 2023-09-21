@@ -84,10 +84,14 @@ namespace ChatUserOne
 
         public void checkChatroomCreateAttempt(Object sender, EventArgs e)
         {
-            
-            foob.createChatroom(addChatControl.ChatnameText);
-            ChatsListView.ItemsSource = foob.forDisplayChatrooms();
-            addChatControl.Visibility = Visibility.Hidden;
+            string chatname = addChatControl.ChatnameText;
+
+            if (!foob.HasChatroom(chatname))
+            {
+                foob.createChatroom(addChatControl.ChatnameText);
+                ChatsListView.ItemsSource = foob.forDisplayChatrooms();
+                addChatControl.Visibility = Visibility.Hidden;
+            }
         }
 
         private void AddChatroom_Click(object sender, RoutedEventArgs e)
