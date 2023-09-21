@@ -39,8 +39,8 @@ namespace ChatUserOne
             foob = foobFactory.CreateChannel();
 
             loginControl.loginAttempt += checkLoginAttempt;
-            addChatControl.Visibility = Visibility.Hidden; 
             addChatControl.creationAttempt += checkChatroomCreateAttempt;
+
         }
 
         private void SendButton_Click(object sender, RoutedEventArgs e)
@@ -60,7 +60,8 @@ namespace ChatUserOne
                 {
                     UsernameBox.Text = user.Name;
                     ChatsListView.ItemsSource = foob.forDisplayChatrooms();
-                    loginControl.Visibility = Visibility.Hidden;
+                    loginControl.Visibility = Visibility.Hidden;  // Make loginControl hidden here
+                    addChatControl.Visibility = Visibility.Visible;  // Make addChatControl visible here
                 }
             }
 
@@ -83,8 +84,9 @@ namespace ChatUserOne
         public void checkChatroomCreateAttempt(Object sender, EventArgs e)
         {
             
-            foob.createChatroom(addChatControl.ChatnameBox.Text);
-            
+            foob.createChatroom(addChatControl.ChatnameText);
+            ChatsListView.ItemsSource = foob.forDisplayChatrooms();
+            addChatControl.Visibility = Visibility.Hidden;
         }
     }
 }

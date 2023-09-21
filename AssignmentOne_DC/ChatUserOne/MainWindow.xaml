@@ -12,7 +12,7 @@
             <!--<ListView  Margin="130,0,0,0"  Name="MessagesListView"> -->
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Chatroom Name" Width="120"/>
+                    <GridViewColumn Header="Chatroom Name" Width="300"/>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -28,6 +28,6 @@
             </ListView.View>
         </ListView>
         <local:LoginControl1 x:Name="loginControl" VerticalAlignment="Center" Height="434" Width="799" Margin="1,0,0,0" />
-        <local:AddChatroomControl x:Name="addChatControl" />
+        <local:AddChatroomControl x:Name="addChatControl" Visibility="Hidden"/>
     </Grid>
 </Window>

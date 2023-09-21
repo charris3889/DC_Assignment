@@ -29,16 +29,17 @@ namespace ChatUserOne
 
         public void createButton_Click(object sender, RoutedEventArgs e)
         {
+            ChatnameText = ChatnameBox.Text;
             creationAttempt?.Invoke(this, EventArgs.Empty);
         }
 
         public static readonly DependencyProperty property =
-            DependencyProperty.Register("ChatText", typeof(string), typeof(LoginControl1), new UIPropertyMetadata());
+            DependencyProperty.Register("ChatText", typeof(string), typeof(AddChatroomControl), new UIPropertyMetadata());
 
-        public string UsernameText
+        public string ChatnameText
         {
             get { return (string)GetValue(property); }
-            set { SetValue(property, ChatnameBox.Text); }
+            set { SetValue(property, value); }
         }
 
     }
