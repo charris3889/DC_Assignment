@@ -14,7 +14,6 @@ namespace ChatServerDLL
     {
         public List<User> users; //Made them public cos i cant be bothered making getters and setters
         public Dictionary<string, List<string>> chatrooms;
-     
 
         public Database() 
         { 

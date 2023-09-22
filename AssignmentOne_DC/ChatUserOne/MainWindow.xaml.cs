@@ -20,6 +20,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Drawing;
 using MessageBox = System.Windows.Forms.MessageBox;
+using System.Drawing.Imaging;
 //using UserControls.LoginControl;
 
 namespace ChatUserOne
@@ -38,6 +39,7 @@ namespace ChatUserOne
 
             ChannelFactory<ServerInterface> foobFactory;
             NetTcpBinding tcp = new NetTcpBinding();
+
             string URL = "net.tcp://localhost:8100/Server";
             foobFactory = new ChannelFactory<ServerInterface>(tcp, URL);
             foob = foobFactory.CreateChannel();
@@ -81,6 +83,9 @@ namespace ChatUserOne
                 {
                     Bitmap bitmap = new Bitmap(filepath);
                     foob.addImageFiles(bitmap);
+
+                    List<Bitmap> list = foob.getImageFiles();
+                    Picture.Source = ConvertBitmapToBitmapSource(list[0]); 
                 }
             }
 
@@ -152,6 +157,24 @@ namespace ChatUserOne
             List<string> supportedImageExtensions = new List<string> { ".jpg", ".jpeg", ".png", ".bmp", ".gif", ".tiff" };
 
             return supportedImageExtensions.Contains(fileExtension);
+        }
+
+
+        private BitmapSource ConvertBitmapToBitmapSource(Bitmap bitmap)
+        {
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                bitmap.Save(memoryStream, ImageFormat.Bmp);
+                memoryStream.Seek(0, SeekOrigin.Begin);
+
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.StreamSource = memoryStream;
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.EndInit();
+
+                return bitmapImage;
+            }
         }
     }
 }
