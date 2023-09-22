@@ -42,5 +42,7 @@ namespace ChatServerDLL
         List<string> getTextFiles();
         [OperationContract]
         List<Bitmap> getImageFiles();
+        [OperationContract]
+        List<string> GetUserList(string chatroom);
     }
 }

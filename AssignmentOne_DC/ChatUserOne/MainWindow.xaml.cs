@@ -21,6 +21,8 @@ using System.Windows.Forms;
 using System.Drawing;
 using MessageBox = System.Windows.Forms.MessageBox;
 using System.Drawing.Imaging;
+using System.Threading;
+using System.Timers;
 //using UserControls.LoginControl;
 
 namespace ChatUserOne
@@ -47,6 +49,15 @@ namespace ChatUserOne
             loginControl.loginAttempt += checkLoginAttempt;
             addChatControl.creationAttempt += checkChatroomCreateAttempt;
 
+            System.Timers.Timer updateDataTimer = new System.Timers.Timer();
+            updateDataTimer.Elapsed += new ElapsedEventHandler(OnDataUpdatePeriod);
+            updateDataTimer.Interval = 5000; //Thread Timer activates every 5 seconds
+            updateDataTimer.Enabled = true;
+
+            System.Timers.Timer updateMessageTimer = new System.Timers.Timer();
+            updateMessageTimer.Elapsed += new ElapsedEventHandler(OnMessageUpdatePeriod);
+            updateMessageTimer.Interval = 5000;
+            updateMessageTimer.Enabled = true;
         }
 
         private void SendButton_Click(object sender, RoutedEventArgs e)
@@ -57,6 +68,34 @@ namespace ChatUserOne
 
         }
 
+        public void OnDataUpdatePeriod(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            //update chatroom list
+            //update user list for chatroom
+
+            Dispatcher.BeginInvoke(new Action(() => {
+                ChatsListView.ItemsSource = foob.forDisplayChatrooms();
+            }));
+
+            if (user != null && user.CurrentChatroom != null)
+            {
+                Dispatcher.BeginInvoke(new Action(() => {
+                    CurrentChatUsersList.ItemsSource = foob.GetUserList(user.CurrentChatroom);
+                }));
+            }
+        }
+
+        public void OnMessageUpdatePeriod(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            //update chatroom messages
+            //update private messages
+            if(user != null && user.CurrentChatroom != null)
+            {
+                Dispatcher.BeginInvoke(new Action(() => {
+                    MessagesListView.ItemsSource = foob.ReceiveMessage(user.CurrentChatroom);
+                }));
+            }
+        }
 
         public void UploadButton_Click(object sender, RoutedEventArgs e)
         {
@@ -92,7 +131,6 @@ namespace ChatUserOne
 
         }
 
-
         public void checkLoginAttempt(Object sender, EventArgs e)
         {
             if (!foob.hasUser(loginControl.UsernameText))
@@ -108,7 +146,6 @@ namespace ChatUserOne
             }
 
         }
-
 
 
         private void ChatsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)

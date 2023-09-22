@@ -30,6 +30,11 @@ namespace ChatServer
             return db.HasChatroom(chatroom);
         }
 
+        public List<string> GetUserList(string chatroom) 
+        {
+            return db.GetUserNames(chatroom);
+        }
+
         public void createChatroom(string chatname)
         {
             db.CreateChatroom(chatname);

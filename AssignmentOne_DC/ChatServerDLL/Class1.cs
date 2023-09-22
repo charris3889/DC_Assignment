@@ -26,7 +26,19 @@ namespace ChatServerDLL
                 return instance.users.Exists(u => u.Name == username);
             }
 
-            public User CreateUser(string username)
+        public List<string> GetUserNames(string chatroom)
+        {
+            List<string> names = new List<string>();
+
+            for (int i = 0; i < instance.users.Count; i++)
+            {
+                names.Add(instance.users[i].Name);
+            }
+
+            return names;
+        }
+
+        public User CreateUser(string username)
             {
                 if (string.IsNullOrEmpty(username)) return null; //Handle invalid usernames.
 

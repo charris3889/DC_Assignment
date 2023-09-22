@@ -23,3 +23,28 @@ C:\Users\hanji\OneDrive\Desktop\Uni Stuff\2023 Sem2\DC\DC_Assignment\AssignmentO
 C:\Users\hanji\OneDrive\Desktop\Uni Stuff\2023 Sem2\DC\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\ChatUserOne.csproj.CopyComplete
 C:\Users\hanji\OneDrive\Desktop\Uni Stuff\2023 Sem2\DC\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\ChatUserOne.exe
 C:\Users\hanji\OneDrive\Desktop\Uni Stuff\2023 Sem2\DC\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\ChatUserOne.pdb
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\ChatUserOne.csproj.AssemblyReference.cache
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\AddChatroomControl.g.cs
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\LoginControl1.g.cs
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\MainWindow.g.cs
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\App.g.cs
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\ChatUserOne_MarkupCompile.cache
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\ChatUserOne_MarkupCompile.lref
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\bin\Debug\ChatUserOne.exe.config
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\bin\Debug\ChatUserOne.exe
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\bin\Debug\ChatUserOne.pdb
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\bin\Debug\ChatServerDLL.dll
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\bin\Debug\UserDLL.dll
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\bin\Debug\ChatServerDLL.pdb
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\bin\Debug\UserDLL.pdb
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\AddChatroomControl.baml
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\LoginControl1.baml
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\MainWindow.baml
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\ChatUserOne.g.resources
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\ChatUserOne.Properties.Resources.resources
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\ChatUserOne.csproj.GenerateResource.cache
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\ChatUserOne.csproj.CoreCompileInputs.cache
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\ChatUserOne.csproj.CopyComplete
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\ChatUserOne.exe
+C:\Users\Cameron PC\Downloads\DC_Assignment\AssignmentOne_DC\ChatUserOne\obj\Debug\ChatUserOne.pdb

@@ -15,11 +15,23 @@ namespace ChatServerDLL
         public List<User> users; //Made them public cos i cant be bothered making getters and setters
         public Dictionary<string, List<string>> chatrooms;
 
-        public Database() 
-        { 
+        public Database()
+        {
             users = new List<User>();
             chatrooms = new Dictionary<string, List<string>>();
             chatrooms["sample"] = new List<string>();
+        }
+
+        public List<string> GetUserNames(string chatroom)
+        {
+            List<string> names = new List<string>();
+
+            for(int i = 0; i < users.Count; i++)
+            {
+                names.Add(users[i].Name);
+            }
+
+            return names;
         }
         public bool HasUser(string username)
         {
