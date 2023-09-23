@@ -64,7 +64,7 @@ namespace ChatUserOne
 
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
-            foob.sendMessage(user, user.CurrentChatroom, MessageArea.Text);
+            foob.sendMessage(user, user.CurrentChatroom, MessageArea.Text, false);
             MessageArea.Text = "";
             MessagesListView.ItemsSource = foob.ReceiveMessage(user.CurrentChatroom);
 
@@ -113,29 +113,33 @@ namespace ChatUserOne
             if (response == true)
             {
                 string filepath = openFileDialog.FileName;
-            
-
                 string fileExtension = System.IO.Path.GetExtension(filepath).ToLower();
 
-                if (fileExtension == ".txt")
-                {
-                    string fileContent = File.ReadAllText(filepath);
-                    foob.addTextFiles(fileContent);
+                string folderPath = "UploadedFiles";
+                Directory.CreateDirectory(folderPath);
 
-                    List<string> list = foob.getTextFiles();
-                    MessageBox.Show(list[0]); 
+                string fileName = $"{DateTime.Now:yyyyMMddHHmmssfff}{fileExtension}";
+                string filePath = System.IO.Path.Combine(folderPath, fileName);
+
+                try
+                {
+                    // Save the uploaded file to the "UploadedFiles" folder
+                    File.Copy(filepath, filePath);
+
+                    // Create an HTML link to the saved file
+                    string relativePath = $"UploadedFiles/{fileName}";
+                    string fileLink = $"<a href='{relativePath}' download>Download File: {fileName}</a>";
+
+                    // Send the link as a message
+                    foob.sendMessage(user, user.CurrentChatroom, fileLink, true);
                 }
-                else if (IsImageFile(fileExtension))
+                catch (IOException ex)
                 {
-                    Bitmap bitmap = new Bitmap(filepath);
-                    foob.addImageFiles(bitmap);
-
-                    List<Bitmap> list = foob.getImageFiles();
-                    Picture.Source = ConvertBitmapToBitmapSource(list[0]); 
+                    // Handle file I/O error if necessary
+                    Console.WriteLine($"Error saving file: {ex.Message}");
+                    return;
                 }
             }
-
-
         }
 
         public void checkLoginAttempt(Object sender, EventArgs e)
@@ -236,6 +240,11 @@ namespace ChatUserOne
 
                 return bitmapImage;
             }
+        }
+
+        private void MessagesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

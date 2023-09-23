@@ -88,15 +88,22 @@ namespace ChatServerDLL
                 }
             }
 
-            public void SendMessage(User user, string chatname, string message)
+            public void SendMessage(User user, string chatname, string message, bool isHtmlMessage)
             {
                 if (user == null || string.IsNullOrEmpty(chatname) || string.IsNullOrEmpty(message)) return; //Handle edge cases.
 
-                if (instance.chatrooms.ContainsKey(chatname))
+                if (isHtmlMessage)
                 {
+                    // If it's an HTML message, you can wrap it in a special HTML tag or add a flag.
+                    // Here, we wrap it in <html> tags for simplicity.
+                    instance.chatrooms[chatname].Add($"[{DateTime.Now}] --> {user.Name}: <html>{message}</html>");
+                }
+                else
+                {
+                    // If it's not an HTML message, add it without any special tags.
                     instance.chatrooms[chatname].Add($"[{DateTime.Now}] --> {user.Name}: {message}");
                 }
-            }
+        }
 
             public List<string> ReceiveMessage(string chatname)
             {
@@ -109,7 +116,7 @@ namespace ChatServerDLL
                 return null; //Or return an empty list.
             }
 
-            public List<string> ForDisplayChatrooms()
+            public List<string> ForDisplayChatrooms(string currentUser)
             {
                 return new List<string>(instance.chatrooms.Keys);
             }
@@ -123,6 +130,28 @@ namespace ChatServerDLL
             {
                 imageFiles.Add(files);
             }
+
+        public string GetOrCreatePersonalRoom(User user1, User user2) //create personal chatrooms
+        {
+            if (user1 == null || user2 == null) return null;
+
+            string[] sortedNames = new string[] { user1.Name, user2.Name }.OrderBy(name => name).ToArray();
+            string personalRoomName = $"{sortedNames[0]}_{sortedNames[1]}";
+
+            if (!instance.chatrooms.ContainsKey(personalRoomName))
+            {
+                instance.chatrooms[personalRoomName] = new List<string>();
+            }
+
+            return personalRoomName;  //return personal chats
+        }
+        public User GetUserByName(string username)
+        {
+            return instance.users.FirstOrDefault(u => u.Name == username);
+        }
+
+
+
     }
     }
 

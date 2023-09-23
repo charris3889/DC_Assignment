@@ -42,7 +42,7 @@ namespace ChatServer
 
         public string createPersonalRoom(User user1, User user2)
         {
-            return db.getOrCreatePersonalRoom(user1, user2);
+            return db.GetOrCreatePersonalRoom(user1, user2);
         }
 
         public void enterChatroom(User user, string chatname)
@@ -50,9 +50,9 @@ namespace ChatServer
             db.EnterChatroom(user, chatname);
         }
 
-        public void sendMessage(User user, string chatname, string message)
+        public void sendMessage(User user, string chatname, string message, bool isHtmlMessage)
         {
-            db.SendMessage(user, chatname, message);
+            db.SendMessage(user, chatname, message, isHtmlMessage);
         }
 
         public List<string> ReceiveMessage(string chatname)

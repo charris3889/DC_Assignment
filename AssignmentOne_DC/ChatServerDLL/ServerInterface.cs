@@ -14,7 +14,7 @@ namespace ChatServerDLL
     public interface ServerInterface
     {
         [OperationContract]
-        void sendMessage(User user, string chatname, string message);
+        void sendMessage(User user, string chatname, string message, bool isHtmlMessage);
         [OperationContract]
         List<string> ReceiveMessage(string chatroom); //not sure what to make return type atm
         [OperationContract]

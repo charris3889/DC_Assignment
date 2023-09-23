@@ -93,13 +93,23 @@ namespace ChatServerDLL
             }
         }
 
-        public void SendMessage(User user, string chatname, string message)
+        public void SendMessage(User user, string chatname, string message, bool isHtmlMessage)
         {
             if (user == null || string.IsNullOrEmpty(chatname) || string.IsNullOrEmpty(message)) return; //Handle edge cases.
 
             if (chatrooms.ContainsKey(chatname))
             {
-                chatrooms[chatname].Add($"[{DateTime.Now}] --> {user.Name}: {message}");
+                if (isHtmlMessage)
+                {
+                    // If it's an HTML message, you can wrap it in a special HTML tag or add a flag.
+                    // Here, we wrap it in <html> tags for simplicity.
+                    chatrooms[chatname].Add($"[{DateTime.Now}] --> {user.Name}: <html>{message}</html>");
+                }
+                else
+                {
+                    // If it's not an HTML message, add it without any special tags.
+                    chatrooms[chatname].Add($"[{DateTime.Now}] --> {user.Name}: {message}");
+                }
             }
         }
 
