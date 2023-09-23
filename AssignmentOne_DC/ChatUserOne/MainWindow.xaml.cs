@@ -33,7 +33,9 @@ namespace ChatUserOne
     public partial class MainWindow : Window
     {
         private ServerInterface foob;
-        private User user;
+        private User user = null;
+        private System.Timers.Timer updateDataTimer;
+        private System.Timers.Timer updateMessageTimer; //made global
 
         public MainWindow()
         {
@@ -49,15 +51,15 @@ namespace ChatUserOne
             loginControl.loginAttempt += checkLoginAttempt;
             addChatControl.creationAttempt += checkChatroomCreateAttempt;
 
-            System.Timers.Timer updateDataTimer = new System.Timers.Timer();
+            updateDataTimer = new System.Timers.Timer();
             updateDataTimer.Elapsed += new ElapsedEventHandler(OnDataUpdatePeriod);
             updateDataTimer.Interval = 5000; //Thread Timer activates every 5 seconds
-            updateDataTimer.Enabled = true;
+            updateDataTimer.Enabled = false; //disable initially so it doesnt crash when a new client gets hit with the check and their user is still null
 
-            System.Timers.Timer updateMessageTimer = new System.Timers.Timer();
+            updateMessageTimer = new System.Timers.Timer();
             updateMessageTimer.Elapsed += new ElapsedEventHandler(OnMessageUpdatePeriod);
             updateMessageTimer.Interval = 5000;
-            updateMessageTimer.Enabled = true;
+            updateMessageTimer.Enabled = false; //disable initially
         }
 
         private void SendButton_Click(object sender, RoutedEventArgs e)
@@ -72,9 +74,11 @@ namespace ChatUserOne
         {
             //update chatroom list
             //update user list for chatroom
+            if (user == null)
+                return; //break in case user gets checked when they havent logged in
 
             Dispatcher.BeginInvoke(new Action(() => {
-                ChatsListView.ItemsSource = foob.forDisplayChatrooms();
+                ChatsListView.ItemsSource = foob.forDisplayChatrooms(user.Name);
             }));
 
             if (user != null && user.CurrentChatroom != null)
@@ -89,7 +93,10 @@ namespace ChatUserOne
         {
             //update chatroom messages
             //update private messages
-            if(user != null && user.CurrentChatroom != null)
+            if (user == null)
+                return; //break in case user gets checked when they havent logged in
+
+            if (user != null && user.CurrentChatroom != null)
             {
                 Dispatcher.BeginInvoke(new Action(() => {
                     MessagesListView.ItemsSource = foob.ReceiveMessage(user.CurrentChatroom);
@@ -139,9 +146,11 @@ namespace ChatUserOne
                 if (user != null)
                 {
                     UsernameBox.Text = user.Name;
-                    ChatsListView.ItemsSource = foob.forDisplayChatrooms();
+                    ChatsListView.ItemsSource = foob.forDisplayChatrooms(user.Name);
                     loginControl.Visibility = Visibility.Hidden;  // Make loginControl hidden here
                     addChatControl.Visibility = Visibility.Visible;  // Make addChatControl visible here
+                    updateMessageTimer.Enabled = true;
+                    updateDataTimer.Enabled = true; //enable timers once users are created
                 }
             }
 
@@ -161,6 +170,21 @@ namespace ChatUserOne
             }
         }
 
+        private void ChatCurrUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string selectedUser = (string)CurrentChatUsersList.SelectedItem;
+            User otherUser = foob.getUser(selectedUser); //get the user from list
+
+            if (otherUser != null)
+            {
+                string personalChatroom = foob.createPersonalRoom(user, otherUser);
+                foob.enterChatroom(user, personalChatroom); //enter the personal chat
+                user.CurrentChatroom = personalChatroom;
+                MessagesListView.ItemsSource = foob.ReceiveMessage(personalChatroom);
+                MyGridView.Columns[0].Header = "Personal Chat: " + otherUser.Name;
+            }
+        }
+
         public void checkChatroomCreateAttempt(Object sender, EventArgs e)
         {
             string chatname = addChatControl.ChatnameText;
@@ -168,7 +192,7 @@ namespace ChatUserOne
             if (!foob.HasChatroom(chatname))
             {
                 foob.createChatroom(addChatControl.ChatnameText);
-                ChatsListView.ItemsSource = foob.forDisplayChatrooms();
+                ChatsListView.ItemsSource = foob.forDisplayChatrooms(user.Name);
                 addChatControl.Visibility = Visibility.Hidden;
             }
         }

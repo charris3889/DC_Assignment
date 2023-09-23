@@ -40,9 +40,9 @@ namespace ChatServer
             db.CreateChatroom(chatname);
         }
 
-        public void createPersonalRoom(User user1, User user2)
+        public string createPersonalRoom(User user1, User user2)
         {
-            db.CreatePersonalRoom(user1, user2);
+            return db.getOrCreatePersonalRoom(user1, user2);
         }
 
         public void enterChatroom(User user, string chatname)
@@ -60,9 +60,9 @@ namespace ChatServer
             return db.ReceiveMessage(chatname);
         }
 
-        public List<string> forDisplayChatrooms()
+        public List<string> forDisplayChatrooms(string currentUser)
         {
-            return db.ForDisplayChatrooms();
+            return db.ForDisplayChatrooms(currentUser);
         }
 
         public void addTextFiles(string files)
@@ -82,6 +82,11 @@ namespace ChatServer
         public List<Bitmap> getImageFiles()
         {
             return db.imageFiles;
+        }
+
+        public User getUser(string username)
+        {
+            return db.GetUserByName(username);
         }
 
 

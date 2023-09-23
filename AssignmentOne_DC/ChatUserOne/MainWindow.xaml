@@ -33,7 +33,7 @@
             </Button.RenderTransform>
         </Button>
         <TextBox Name="UsernameBox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Width="130" Height="22" Grid.ColumnSpan="2"/>
-        <ListBox Margin="661,0,1,151" Name="CurrentChatUsersList" Width="112" Grid.Column="1"/>
+        <ListBox Margin="661,0,1,151" Name="CurrentChatUsersList" Width="112" Grid.Column="1" SelectionChanged="ChatCurrUsers_SelectionChanged"/>
         <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,22,670,33" Name="ChatsListView" SelectionChanged="ChatsListView_SelectionChanged" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>

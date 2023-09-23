@@ -67,16 +67,21 @@ namespace ChatServerDLL
             }
         }
 
-        public void CreatePersonalRoom(User user1, User user2)
+        public string GetOrCreatePersonalRoom(User user1, User user2) //create personal chatrooms
         {
-            if (user1 == null || user2 == null) return; //Handle null users.
+            if (user1 == null || user2 == null) return null;
 
-            string personalRoomName = $"{user1.Name}_{user2.Name}";
+            string[] sortedNames = new string[] { user1.Name, user2.Name }.OrderBy(name => name).ToArray();
+            string personalRoomName = $"{sortedNames[0]}_{sortedNames[1]}";
+
             if (!chatrooms.ContainsKey(personalRoomName))
             {
                 chatrooms[personalRoomName] = new List<string>();
             }
+
+            return personalRoomName;  //return personal chats
         }
+
 
         public void EnterChatroom(User user, string chatname)
         {
@@ -98,24 +103,38 @@ namespace ChatServerDLL
             }
         }
 
-        public List<string> ReceiveMessage(string chatname)
+        public List<string> ReceiveMessage(string chatname, User requestingUser)
         {
-            if (string.IsNullOrEmpty(chatname)) return null; //Handle invalid chat names.
+            if (string.IsNullOrEmpty(chatname)) return null;
 
             if (chatrooms.ContainsKey(chatname))
             {
+                // Check if it's a personal chatroom
+                if (chatname.Contains("_") && !chatname.Split('_').Contains(requestingUser.Name))
+                {
+                    Console.WriteLine($"[{DateTime.Now}]{requestingUser.Name} tried to access a personal chatroom they don't belong to.");
+                    return null;  // Or an empty list if you prefer.
+                }
                 return chatrooms[chatname];
             }
-            return null; //Or return an empty list.
+            return null;
         }
 
-        public List<string> ForDisplayChatrooms()
+        public List<string> ForDisplayChatrooms(string currentUser)//change to take in username for available chatroom checking
+                                                                   //we dont want other users to see other's personal chats
         {
-            return new List<string>(chatrooms.Keys);
+            return chatrooms.Keys.Where(room =>
+                !room.Contains("_")
+                || room.StartsWith(currentUser + "_")
+                || room.EndsWith("_" + currentUser)).ToList();
+        }
+
+        public User GetUserByName(string username)
+        {
+            return users.FirstOrDefault(u => u.Name == username);
         }
 
 
-      
     }
 
 }

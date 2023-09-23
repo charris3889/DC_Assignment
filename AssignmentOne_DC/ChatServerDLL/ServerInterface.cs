@@ -20,14 +20,14 @@ namespace ChatServerDLL
         [OperationContract]
         bool hasUser(string username);
         [OperationContract]
-        List<string> forDisplayChatrooms();
+        List<string> forDisplayChatrooms(string user);
 
         [OperationContract]
         User createUser(string username);
         [OperationContract]
         void createChatroom(string chatname);
         [OperationContract]
-        void createPersonalRoom(User user1, User user2);
+        string createPersonalRoom(User user1, User user2);
         [OperationContract]
         void enterChatroom(User user, string chatname);
         [OperationContract]
@@ -44,5 +44,7 @@ namespace ChatServerDLL
         List<Bitmap> getImageFiles();
         [OperationContract]
         List<string> GetUserList(string chatroom);
+        [OperationContract]
+        User getUser(string username);
     }
 }
