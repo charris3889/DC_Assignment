@@ -56,7 +56,7 @@
         <Button Grid.Column="1" Content="Add image" HorizontalAlignment="Left" Margin="696,339,0,0" VerticalAlignment="Top" Height="31" Width="78" Click="AddImage_Click"/>
         <Button Content="Logout" Grid.Column="1" Margin="717,311,-3,96" Click="LogoutButton_Click"/>
         <!-- <Image x:Name="Picture" HorizontalAlignment="Left" Height="100" Margin="550,40,0,0"  VerticalAlignment="Top" Width="100" Panel.ZIndex="999"/> -->
-        <local:LoginControl1 x:Name="loginControl" VerticalAlignment="Center" Height="439" Width="799" Margin="1,0,0,0" Grid.ColumnSpan="2" />
+        <local:LoginControl1 x:Name="loginControl" VerticalContentAlignment="Stretch" VerticalAlignment="Stretch" Grid.ColumnSpan="2" />
         <local:AddChatroomControl x:Name="addChatControl" Visibility="Hidden" Grid.ColumnSpan="2"/>
 
     </Grid>
