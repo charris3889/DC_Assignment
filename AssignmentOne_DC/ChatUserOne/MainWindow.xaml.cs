@@ -207,17 +207,16 @@ namespace ChatUserOne
             addChatControl.Visibility = Visibility.Visible;
         }
 
-        private void AddImage_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             loginControl.Visibility = Visibility.Visible;
         }
 
-
+        private void loginControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
 
         private void MessagesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
