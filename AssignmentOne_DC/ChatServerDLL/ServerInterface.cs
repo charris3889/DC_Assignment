@@ -21,7 +21,6 @@ namespace ChatServerDLL
         bool hasUser(string username);
         [OperationContract]
         List<string> forDisplayChatrooms(string user);
-
         [OperationContract]
         User createUser(string username);
         [OperationContract]
@@ -34,14 +33,6 @@ namespace ChatServerDLL
         bool HasChatroom(string chatroom);
         //[OperationContract]
         //List<User> getChatroomMembers(Chatroom chatroom);
-        [OperationContract]
-        void addTextFiles(string files);
-        [OperationContract]
-        void addImageFiles(Bitmap files);
-        [OperationContract]
-        List<string> getTextFiles();
-        [OperationContract]
-        List<Bitmap> getImageFiles();
         [OperationContract]
         List<string> GetUserList(string chatroom);
         [OperationContract]

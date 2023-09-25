@@ -23,6 +23,8 @@ using MessageBox = System.Windows.Forms.MessageBox;
 using System.Drawing.Imaging;
 using System.Threading;
 using System.Timers;
+using System.Net;
+using System.Globalization;
 //using UserControls.LoginControl;
 
 namespace ChatUserOne
@@ -66,6 +68,9 @@ namespace ChatUserOne
         {
             foob.sendMessage(user, user.CurrentChatroom, MessageArea.Text, false);
             MessageArea.Text = "";
+
+           
+
             MessagesListView.ItemsSource = foob.ReceiveMessage(user.CurrentChatroom);
 
         }
@@ -114,8 +119,8 @@ namespace ChatUserOne
             {
                 string filepath = openFileDialog.FileName;
                 string fileExtension = System.IO.Path.GetExtension(filepath).ToLower();
-
                 string folderPath = "UploadedFiles";
+
                 Directory.CreateDirectory(folderPath);
 
                 string fileName = $"{DateTime.Now:yyyyMMddHHmmssfff}{fileExtension}";
@@ -123,19 +128,15 @@ namespace ChatUserOne
 
                 try
                 {
-                    // Save the uploaded file to the "UploadedFiles" folder
                     File.Copy(filepath, filePath);
 
-                    // Create an HTML link to the saved file
                     string relativePath = $"UploadedFiles/{fileName}";
                     string fileLink = $"<a href='{relativePath}' download>Download File: {fileName}</a>";
 
-                    // Send the link as a message
                     foob.sendMessage(user, user.CurrentChatroom, fileLink, true);
                 }
                 catch (IOException ex)
                 {
-                    // Handle file I/O error if necessary
                     Console.WriteLine($"Error saving file: {ex.Message}");
                     return;
                 }
@@ -217,34 +218,68 @@ namespace ChatUserOne
         }
 
 
-        private bool IsImageFile(string fileExtension)
-        {
-            List<string> supportedImageExtensions = new List<string> { ".jpg", ".jpeg", ".png", ".bmp", ".gif", ".tiff" };
-
-            return supportedImageExtensions.Contains(fileExtension);
-        }
-
-
-        private BitmapSource ConvertBitmapToBitmapSource(Bitmap bitmap)
-        {
-            using (MemoryStream memoryStream = new MemoryStream())
-            {
-                bitmap.Save(memoryStream, ImageFormat.Bmp);
-                memoryStream.Seek(0, SeekOrigin.Begin);
-
-                BitmapImage bitmapImage = new BitmapImage();
-                bitmapImage.BeginInit();
-                bitmapImage.StreamSource = memoryStream;
-                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                bitmapImage.EndInit();
-
-                return bitmapImage;
-            }
-        }
 
         private void MessagesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            Hyperlink hyperlink = (Hyperlink)sender;
+            string text = hyperlink.DataContext.ToString();
+
+            if (IsHtmlLink(text))
+            {
+                string url = ExtractUrlFromHtmlLink(text);
+                DownloadFile(url);
+            }
+        }
+
+        private bool IsHtmlLink(string text)
+        {
+            string pattern = @"<a\s+(?:[^>]*?\s+)?href=(['""])(.*?)\1";
+
+            return System.Text.RegularExpressions.Regex.IsMatch(text, pattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+        }
+
+        private string ExtractUrlFromHtmlLink(string htmlLink)
+        {
+            string pattern = @"<a\s+(?:[^>]*?\s+)?href=(['""])(.*?)\1";
+
+            System.Text.RegularExpressions.Match match= System.Text.RegularExpressions.Regex.Match(htmlLink, pattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+
+            if ( match.Success)
+            {
+                return match.Groups[2].Value;
+            }
+
+            return string.Empty;
+        }
+
+        private void DownloadFile(string url)
+        {
+            Microsoft.Win32.SaveFileDialog saveFileDialog = new Microsoft.Win32.SaveFileDialog();
+            saveFileDialog.FileName = "DownloadedFile";
+            bool? result = saveFileDialog.ShowDialog();
+
+            if (result ==true)
+            {
+                string filePath = saveFileDialog.FileName;
+                using (WebClient webClient = new WebClient())
+                {
+                    try
+                    {
+                        webClient.DownloadFile(url, filePath);
+                        MessageBox.Show("File successfully downloaded");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error downloading file: " + ex.Message);
+                    }
+                }
+            }
+        }
     }
+
 }

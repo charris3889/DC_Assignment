@@ -102,7 +102,6 @@ namespace ChatServerDLL
                 if (isHtmlMessage)
                 {
                     // If it's an HTML message, you can wrap it in a special HTML tag or add a flag.
-                    // Here, we wrap it in <html> tags for simplicity.
                     chatrooms[chatname].Add($"[{DateTime.Now}] --> {user.Name}: <html>{message}</html>");
                 }
                 else

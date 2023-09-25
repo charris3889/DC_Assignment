@@ -11,8 +11,6 @@ namespace ChatServerDLL
         public class DatabaseSingleton
         {
             private static Database instance;
-            public List<string> textFiles = new List<string>();
-            public List<Bitmap> imageFiles = new List<Bitmap>();
 
         public DatabaseSingleton()
             {
@@ -119,16 +117,6 @@ namespace ChatServerDLL
             public List<string> ForDisplayChatrooms(string currentUser)
             {
                 return new List<string>(instance.chatrooms.Keys);
-            }
-
-            public void addTextFiles(string files)
-            {
-                textFiles.Add(files);
-            }
-
-            public void addImageFiles(Bitmap files)
-            {
-                imageFiles.Add(files);
             }
 
         public string GetOrCreatePersonalRoom(User user1, User user2) //create personal chatrooms

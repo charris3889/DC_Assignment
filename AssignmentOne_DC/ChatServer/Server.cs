@@ -65,25 +65,6 @@ namespace ChatServer
             return db.ForDisplayChatrooms(currentUser);
         }
 
-        public void addTextFiles(string files)
-        {
-            db.addTextFiles(files);
-        }
-        public void addImageFiles(Bitmap files)
-        {
-            db.addImageFiles(files);
-        }
-
-        public List<string> getTextFiles()
-        {
-            return db.textFiles;
-        }
-
-        public List<Bitmap> getImageFiles()
-        {
-            return db.imageFiles;
-        }
-
         public User getUser(string username)
         {
             return db.GetUserByName(username);
